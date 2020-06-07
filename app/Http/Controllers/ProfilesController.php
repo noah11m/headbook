@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Validation\Rule;
+
+class ProfilesController extends Controller
+{
+    public function show(User $user)
+    {
+        return view("profiles.show", [
+            "user" => $user,
+            "tweets" => $user->tweets()
+            ->withLikes()
+            ->paginate(30),
+        ]);
+    }
+
+    public function edit(User $user)
+    {
+        return view("profiles.edit", compact("user"));
+    }
+
+    public function update(User $user)
+    {
+        $attributes = request()->validate([
+            "username" => ["string",
+            "required",
+            "max:100",
+            "alpha_dash",
+            Rule::unique("users")->ignore($user)],
+
+            "name" => ["string",
+            "required",
+            "max:100"
+            ],
+
+            "avatar" => ["file"],
+
+            "description" => ["string",
+            "max:400"
+            ],
+
+            "email" => ["string",
+            "required",
+            "email",
+            "max:150",
+            Rule::unique("users")->ignore($user)
+            ],
+
+            "password" => ["string",
+            "required",
+            "min:8",
+            "max:150",
+            "confirmed"
+            ]
+
+        ]);
+        if (request("avatar")) {
+            $attributes["avatar"] = request("avatar")->store("avatars");
+        }
+
+        $user->update($attributes);
+        flash("Profilen uppdaterades!")->success();
+        return redirect($user->path());
+    }
+}
+
+
+/* if($user->is(auth()->user())) {
+    return view("profiles.edit", compact("user"));
+}
+abort(403); */
+//$this->authorize("edit", $user);
