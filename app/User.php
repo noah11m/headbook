@@ -29,10 +29,10 @@ class User extends Authenticatable
         return asset($value ?: "/images/avatar.jpg");
     }
 
-    public function setPasswordAttribute($value)
+    /* public function setPasswordAttribute($value)
     {
-        $this->attributes["password"] = bcrypt($value);
-    }
+        $this->attributes["password"] = Hash::make($value);
+    } */
 
     public function timeline()
     {

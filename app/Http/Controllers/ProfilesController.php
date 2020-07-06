@@ -50,12 +50,12 @@ class ProfilesController extends Controller
             Rule::unique("users")->ignore($user)
             ],
 
-            "password" => ["string",
+            /* "password" => ["string",
             "required",
             "min:8",
             "max:150",
             "confirmed"
-            ]
+            ] */
 
         ]);
         if (request("avatar")) {

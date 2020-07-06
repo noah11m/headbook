@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
     <script src="http://unpkg.com/turbolinks"></script>
 
     <!-- Fonts -->
@@ -44,9 +44,7 @@
     </div>
     <script src="//code.jquery.com/jquery.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script>
-    $('#flash-overlay-modal').modal();
-    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
-    </script>
+
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

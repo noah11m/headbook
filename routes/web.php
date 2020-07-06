@@ -41,6 +41,11 @@ Route::middleware("auth")->group(function() {
 
     Route::get("/explore", "ExploreController@index");
 
+    Route::get("/messages", "ContactsController@index");
+
+    Route::get("/contacts", "ContactsController@get");
+    Route::get("/conversation/{id}", "ContactsController@getMessagesFor");
+    Route::post("/conversation/send", "ContactsController@send");
 
 });
 

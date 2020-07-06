@@ -73,7 +73,7 @@
         @enderror
     </div>
 
-    <div class="mb-6">
+    {{-- <div class="mb-6">
         <label for="password" class="block mb-2 uppercase font-bold text-xs text-gray-700">
             Lösenord
         </label>
@@ -93,7 +93,7 @@
         @error('password_confirmation')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
         @enderror
-    </div>
+    </div> --}}
 
     <div class="mb-6">
         <button class="bg-blue-400 text-white mr-4
